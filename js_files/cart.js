@@ -1,6 +1,6 @@
 const globalProducts = [];
 
-const currentItemPrices = []
+const currentItemPrices = [];
 
 const items = [
   ["kb", 75], // Kettlebell
@@ -24,34 +24,47 @@ const items = [
 let totalCartPrice = 0;
 let currentPrice = 0;
 
-const products = document.querySelectorAll(".col"); 
+const products = document.querySelectorAll(".col-xl-2");
 
 const totalCartDeductableText = document.getElementById(
   "total-cart-deductable"
 );
 
 products.forEach((product, index) => {
+  const addToCartText = document.createElement("p");
+  addToCartText.textContent = "Add To Cart";
+  addToCartText.style.textAlign = "center";
+  addToCartText.style.fontSize = "1rem";
+  addToCartText.style.color = "white";
+  addToCartText.style.backgroundColor = "#26272b";
+  addToCartText.style.border = "2px solid white";
+  addToCartText.style.marginTop = "-38px";
+  addToCartText.style.padding = "5px";
+  addToCartText.style.position = "absolute";
+  product.appendChild(addToCartText);
+
   product.addEventListener("click", () => {
-    
     totalCartPrice += items[index][1];
     currentPrice = items[index][1];
-    sessionStorage.setItem("totalCartPrice", totalCartPrice);
-    currentItemPrices.push(currentPrice = items[index][1]); 
-    sessionStorage.setItem("currentItemPrices", JSON.stringify(currentItemPrices));
-    if(totalCartPrice === 0){
-      totalCartDeductableText.textContent = "Total Cart Deductable: $0"
-    }
-    else if(totalCartPrice > 0){
+    sessionStorage.setItem("totalCartPrice", JSON.stringify(totalCartPrice));
+    currentItemPrices.push((currentPrice = items[index][1]));
+    sessionStorage.setItem(
+      "currentItemPrices",
+      JSON.stringify(currentItemPrices)
+    );
+    if (totalCartPrice === 0) {
+      totalCartDeductableText.textContent = "Total Cart Deductible: $0";
+    } else if (totalCartPrice > 0) {
       totalCartDeductableText.textContent =
-      "Total Cart Deductable: $" + totalCartPrice;
+        "Total Cart Deductible: $" + totalCartPrice;
     }
-    
+
     const image = product.querySelector("img");
     const productData = {
       src: image.getAttribute("src"),
       height: image.getAttribute("height"),
       width: image.getAttribute("width"),
-      "price": currentPrice,
+      price: currentPrice,
     };
     globalProducts.push(productData);
     console.log(globalProducts);
