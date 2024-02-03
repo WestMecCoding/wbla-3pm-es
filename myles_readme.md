@@ -1,6 +1,10 @@
 # Documentation for Myles' Contribution
 
-## I worked mostly on the Home page but I contributed a little on other things.
+## Quick Summary
+
+We were tasking to create a website for a brand called ELEVATE. They are focused around providing services and products to improve a person's lifestyle mentally and physically.
+
+Below are some of my contributions.
 
 
 
